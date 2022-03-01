@@ -3,6 +3,7 @@
 #script paramentrieren 
 
 #todo Output Log datei 
+# alle commands auf Log Datei verzweigen
 
 BASEDIR=$PWD
 rm InstallLogFile
