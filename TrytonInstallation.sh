@@ -5,22 +5,33 @@
 #todo Output Log datei 
 # alle commands auf Log Datei verzweigen
 
+
+############################### TO DOs ###################################################################
+# - Jeglicher Output anstatt zu /dev/null zur Logdatei 
+# - Passende Echos in die Logdatei 
+# - postgres funktion schreiben 
+
+############################### TO DOs ###################################################################
+
 BASEDIR=$PWD
 rm InstallLogFile
 touch $BASEDIR InstallLogFile
 x-terminal-emulator -e tail -f InstallLogFile
 echo "Hier sehen sie was im Hintergrund passiert:" > InstallLogFile
 
+#testet ob ein paket installiert ist
 function package_exists() {
     return dpkg -l "$1" &> /dev/null
 }
 
+# ja nein Dialog Template
 function yesNoDialog(){
    dialog --title "$1" \
     --backtitle "Tryton Installation" \
     --yesno "$2" $3 $4
 }
 
+#update funktion 
 function aptUpdate(){
     echo "Update"
       DIALOG=${DIALOG=dialog}
@@ -51,6 +62,7 @@ function aptUpdate(){
 
 }
 
+#frage Dialog für update
 function YesNoAptUpdate(){
     yesNoDialog "Achtung!" "Als nächstes wird ein apt-get update und upgrade ausgeführt. Wollen sie ihr System updaten?" 7 60;
     response=$?
@@ -61,8 +73,6 @@ function YesNoAptUpdate(){
     esac
 }
 
-
-
 function installtionStarten(){
     yesNoDialog "Achtung!" "Dieses Skript ist eine eigen Kreation und kann daher Fehler enthalten. Jegliche Haftung wird daher ausgeschlossen und sie handeln auf eigene Gefahr. Sind sie damit einverstanden? " 10 80
     response=$?
@@ -72,7 +82,7 @@ function installtionStarten(){
         255) clear; echo "Installations abgebrochen";;
     esac
 }
-
+#Willkommen funktions
 function Willkommen(){
     yesNoDialog "Willkommen" "Möchten sie Tryton auf ihrem Computer installieren?" 7 60 ;
 
@@ -83,7 +93,7 @@ function Willkommen(){
         255) clear; echo "Installations abgebrochen";;
     esac
 }
-
+# Testet ob Dialog installiert ist
 function checkForDialog(){
     echo "Tryton Installation ";
     # Dies ist ein wichtiges Paket da wird mit Dialog ne GUI aufbauen können. 
@@ -93,10 +103,13 @@ function checkForDialog(){
         sudo apt-get install dialog
     fi
 }
+
+#dummy
 function installPostgres(){
     yesNoDialog "Postgres Installation!" "Möchten sie Postgres installieren?" 10 80 ;
 }
 
+#tode Funktion 
 function installPythonEnv(){
       
     DIALOG=${DIALOG=dialog}
@@ -151,6 +164,8 @@ function installPythonEnv(){
 
 }
 
+
+#Template für Progressbar Funktionen 
 function commandsExecuter() {
     DIALOG=${DIALOG=dialog}
 
@@ -178,7 +193,7 @@ function commandsExecuter() {
         ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
 }
 
-
+#erstellt eine Virtuelle Python Umgebung
 function createVenv(){
 
     echo "Name Input"
@@ -209,7 +224,6 @@ function createVenv(){
 }
 
 
-#nutzer nachfragen ob er update und upgrade machen möchte ! 
 
 checkForDialog
 Willkommen
