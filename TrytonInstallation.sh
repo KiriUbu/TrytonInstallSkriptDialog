@@ -45,7 +45,9 @@ function aptUpdate(){
         sleep 1
         
         done
-        ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
+        ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0;
+
+        createVenv
 
 }
 
