@@ -120,7 +120,7 @@ function installPostgres(){
 function installModules(){
     # Demonstriert dialog --checklist
     # Name : dialog7
-    pizza=`dialog --checklist "Pizza mit ..." 0 0 4 \
+    pizza=`dialog --checklist "Unsere em" 0 0 4 \
     Käse "" on\
     Salami "" off\
     Schinken "" off\
@@ -165,6 +165,7 @@ function installPythonEnv(){
  
 
    # installPostgres
+   source trytonEnv/bin/activate
    installModules
 
 }
