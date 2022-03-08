@@ -116,6 +116,7 @@ function installPostgres(){
     yesNoDialog "Postgres Installation!" "Möchten sie Postgres installieren?" 10 80 ;
 }
 
+#installiert zusätzliche Pakete für die Python Umgebung
 function pythonPakete(){
 
 pip install trytond==$Zielversionsnummer proteus
@@ -154,6 +155,9 @@ pip install trytond==$Zielversionsnummer proteus
         
         done
         ) | $DIALOG --title "Zusätzliche Python Pakete werden installiert " --gauge "Hier könnte dein Befehl stehen" 20 70 0
+
+
+        installPostgres
 }
 
 #dialog liste für mehr tryton_module 
