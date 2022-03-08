@@ -165,9 +165,8 @@ function installPythonEnv(){
  
 
    # installPostgres
-   source trytonEnv/bin/activate
+   echo "source $1/$2/bin/activate" >> InstallLogFile
    installModules
-
 }
 
 
