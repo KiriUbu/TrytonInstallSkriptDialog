@@ -162,10 +162,6 @@ function installModules(){
     echo "Modul installation gestartet" >> InstallLogFile 2>&1
     DIALOG=${DIALOG=dialog}
 
-    declare -a ListOfCommands=($ModulAuswahl)
-    COUNT=0
-    index=0;
-    len=${#ListOfCommands[@]}
     (
     for command in "${ListOfCommands[@]}"
     do
@@ -182,11 +178,6 @@ function installModules(){
     ) | $DIALOG --title "Modul Installation" --gauge "Hier könnte dein Befehl stehen" 20 70 0;
 
 
-  #  for modul in $ModulAuswahl
-  #  do 
-  #      pip3 install $modul >> InstallLogFile 2>&1
-  #  done
-  #  pip3 install werkzeug
 }
 
 #tode Funktion 
