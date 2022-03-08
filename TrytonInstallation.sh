@@ -151,7 +151,6 @@ pip install trytond==$Zielversionsnummer proteus
         echo "Der folgende Befehl wird gerade durchgeführt: pip3 install $command $index/$len"
         echo "XXX"
         pip3 install $command  >> InstallLogFile 2>&1
-        sleep 1
         
         done
         ) | $DIALOG --title "Zusätzliche Python Pakete werden installiert " --gauge "Hier könnte dein Befehl stehen" 20 70 0
