@@ -135,7 +135,7 @@ function installPostgres(){
         echo "XXX"
         echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
         echo "XXX"
-        echo "$command" >> InstallLogFile 2>&1 
+        $command >> InstallLogFile 2>&1 
         done
         ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
  
