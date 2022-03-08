@@ -157,6 +157,12 @@ function installModules(){
     dialog --clear
     clear
     echo "Ihre Bestellung: Pizza mit $ModulAuswahl"
+
+    for modul in $ModulAuswahl
+    do 
+        echo "pip3 install $modul"
+    done
+    pip3 install werkzeug
 }
 
 #tode Funktion 
