@@ -176,7 +176,7 @@ function installModules(){
         echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
         echo "XXX"
         pip3 install $command >> InstallLogFile 2>&1
-        sleep 1
+       # sleep 1
         
     done
     ) | $DIALOG --title "Modul Installation" --gauge "Hier könnte dein Befehl stehen" 20 70 0;
