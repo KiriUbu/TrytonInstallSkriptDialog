@@ -120,7 +120,7 @@ function installPostgres(){
 function installModules(){
     # Demonstriert dialog --checklist
     # Name : dialog7
-    ModulAuswahl=`dialog --checklist "Die von uns empfohlenen Module" 0 0 4 \
+    ModulAuswahl=`dialog --checklist "Die von uns empfohlenen Module" 0 0 10\
     trytond "" on\
     trytond-account "" on\
     trytond-account-invoice "" on\
