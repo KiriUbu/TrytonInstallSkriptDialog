@@ -162,6 +162,10 @@ function installModules(){
     echo "Modul installation gestartet" >> InstallLogFile 2>&1
     DIALOG=${DIALOG=dialog}
 
+    declare -a ListOfCommands=($ModulAuswahl)
+    COUNT=0
+    index=0;
+    len=${#ListOfCommands[@]}
     (
     for command in "${ListOfCommands[@]}"
     do
