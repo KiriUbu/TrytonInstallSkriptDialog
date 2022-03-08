@@ -153,8 +153,7 @@ function installModules(){
     trytond-stock-supply "" on\
     trytond-timesheet "" on\
     trytond-timesheet-cost "" on\
-    trytond-web-user "" on\
-    Thunfisch "" off 3>&1 1>&2 2>&3`
+    trytond-web-user "" on  3>&1 1>&2 2>&3`
     dialog --clear
     clear
     echo "Ihre Bestellung: Pizza mit $ModulAuswahl"
