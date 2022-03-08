@@ -11,6 +11,8 @@
 # - Passende Echos in die Logdatei 
 # - postgres funktion schreiben 
 
+
+
 ############################### TO DOs ###################################################################
 
 BASEDIR=$PWD
@@ -148,7 +150,7 @@ function installPythonEnv(){
         ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0;
  
 
-    installPostgres
+   # installPostgres
 
 }
 
