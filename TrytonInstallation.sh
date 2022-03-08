@@ -156,11 +156,11 @@ function installModules(){
     trytond-web-user "" on  3>&1 1>&2 2>&3`
     dialog --clear
     clear
-    echo "Ihre Bestellung: Pizza mit $ModulAuswahl"
+    echo "Ihre ausgewählten Module $ModulAuswahl"
 
     for modul in $ModulAuswahl
     do 
-        echo "pip3 install $modul"
+        pip3 install $modul >> InstallLogFile 2>&1
     done
     pip3 install werkzeug
 }
