@@ -116,10 +116,194 @@ function installPostgres(){
     yesNoDialog "Postgres Installation!" "Möchten sie Postgres installieren?" 10 80 ;
 }
 
+#dialog liste für mehr tryton_module 
+function moreModules(){
+    ModulAuswahl=`dialog --checklist "Wählen sie die Module die sie zusätzlich installieren wollen" 0 0 10\
+    trytond "" off\
+    trytond-account "" off\
+    trytond-account-asset "" off\
+    trytond-account-be "" off\
+    trytond-account-cash-rounding "" off\
+    trytond-account-credit-limit "" off\
+    trytond-account-de-skr03 "" off\
+    trytond-account-deposit "" off\
+    trytond-account-dunning "" off\
+    trytond-account-dunning-email "" off\
+    trytond-account-dunning-fee "" off\
+    trytond-account-dunning-letter "" off\
+    trytond-account-eu "" off\
+    trytond-account-invoice "" off\
+    trytond-account-invoice-correction "" off\
+    trytond-account-invoice-defer "" off\
+    trytond-account-invoice-history "" off\
+    trytond-account-invoice-line-standalone "" off\
+    trytond-account-invoice-secondary-unit "" off\
+    trytond-account-invoice-stock "" off\
+    trytond-account-payment "" off\
+    trytond-account-payment-braintree "" off\
+    trytond-account-payment-clearing "" off\
+    trytond-account-payment-sepa "" off\
+    trytond-account-payment-sepa-cfonb "" off\
+    trytond-account-payment-stripe "" off\
+    trytond-account-product "" off\
+    trytond-account-statement "" off\
+    trytond-account-statement-aeb43 "" off\
+    trytond-account-statement-coda "" off\
+    trytond-account-statement-ofx "" off\
+    trytond-account-statement-rule "" off\
+    trytond-account-stock-continental "" off\
+    trytond-account-stock-landed-cost "" off\
+    trytond-account-stock-landed-cost-weight "" off\
+    trytond-account-tax-cash "" off\
+    trytond-account-tax-rule-country "" off\
+    trytond-analytic-account "" off\
+    trytond-analytic-invoice "" off\
+    trytond-analytic-purchase "" off\
+    trytond-analytic-sale "" off\
+    trytond-attendance "" off\
+    trytond-authentication-sms "" off\
+    trytond-bank "" off\
+    trytond-carrier "" off\
+    trytond-carrier-percentage "" off\
+    trytond-carrier-subdivision "" off\
+    trytond-carrier-weight "" off\
+    trytond-commission "" off\
+    trytond-commission-waiting "" off\
+    trytond-company "" off\
+    trytond-company-work-time "" off\
+    trytond-country "" off\
+    trytond-currency "" off\
+    trytond-customs "" off\
+    trytond-dashboard "" off\
+    trytond-edocument-uncefact "" off\
+    trytond-edocument-unece "" off\
+    trytond-gis "" off\
+    trytond-incoterm "" off\
+    trytond-ldap-authentication "" off\
+    trytond-marketing "" off\
+    trytond-marketing-automation "" off\
+    trytond-marketing-email "" off\
+    trytond-notification-email "" off\
+    trytond-party "" off\
+    trytond-party-avatar "" off\
+    trytond-party-relationship "" off\
+    trytond-party-siret "" off\
+    trytond-product "" off\
+    trytond-product-attribute "" off\
+    trytond-product-classification "" off\
+    trytond-product-classification-taxonomic "" off\
+    trytond-product-cost-fifo "" off\
+    trytond-product-cost-history "" off\
+    trytond-product-cost-warehouse "" off\
+    trytond-product-kit "" off\
+    trytond-product-measurements "" off\
+    trytond-product-price-list "" off\
+    trytond-product-price-list-dates "" off\
+    trytond-product-price-list-parent "" off\
+    trytond-production "" off\
+    trytond-production-outsourcing "" off\
+    trytond-production-routing "" off\
+    trytond-production-split "" off\
+    trytond-production-work "" off\
+    trytond-production-work-timesheet "" off\
+    trytond-project "" off\
+    trytond-project-invoice "" off\
+    trytond-project-plan "" off\
+    trytond-project-revenue "" off\
+    trytond-purchase "" off\
+    trytond-purchase-amendment "" off\
+    trytond-purchase-history "" off\
+    trytond-purchase-invoice-line-standalone "" off\
+    trytond-purchase-price-list "" off\
+    trytond-purchase-request "" off\
+    trytond-purchase-request-quotation "" off\
+    trytond-purchase-requisition "" off\
+    trytond-purchase-secondary-unit "" off\
+    trytond-purchase-shipment-cost "" off\
+    trytond-sale "" off\
+    trytond-sale-advance-payment "" off\
+    trytond-sale-amendment "" off\
+    trytond-sale-complaint "" off\
+    trytond-sale-credit-limit "" off\
+    trytond-sale-discount "" off\
+    trytond-sale-extra "" off\
+    trytond-sale-gift-card "" off\
+    trytond-sale-history "" off\
+    trytond-sale-invoice-grouping "" off\
+    trytond-sale-opportunity "" off\
+    trytond-sale-payment "" off\
+    trytond-sale-price-list "" off\
+    trytond-sale-product-customer "" off\
+    trytond-sale-promotion "" off\
+    trytond-sale-promotion-coupon "" off\
+    trytond-sale-secondary-unit "" off\
+    trytond-sale-shipment-cost "" off\
+    trytond-sale-shipment-grouping "" off\
+    trytond-sale-shipment-tolerance "" off\
+    trytond-sale-stock-quantity "" off\
+    trytond-sale-subscription "" off\
+    trytond-sale-subscription-asset "" off\
+    trytond-sale-supply "" off\
+    trytond-sale-supply-drop-shipment "" off\
+    trytond-sale-supply-production "" off\
+    trytond-stock==6.0.2 "" off\
+    trytond-stock-assign-manual "" off\
+    trytond-stock-consignment "" off\
+    trytond-stock-forecast "" off\
+    trytond-stock-inventory-location "" off\
+    trytond-stock-location-move "" off\
+    trytond-stock-location-sequence "" off\
+    trytond-stock-lot "" off\
+    trytond-stock-lot-sled "" off\
+    trytond-stock-lot-unit "" off\
+    trytond-stock-package "" off\
+    trytond-stock-package-shipping "" off\
+    trytond-stock-package-shipping-dpd "" off\
+    trytond-stock-package-shipping-ups "" off\
+    trytond-stock-product-location "" off\
+    trytond-stock-quantity-early-planning "" off\
+    trytond-stock-quantity-issue "" off\
+    trytond-stock-secondary-unit "" off\
+    trytond-stock-shipment-cost "" off\
+    trytond-stock-shipment-measurements "" off\
+    trytond-stock-split "" off\
+    trytond-stock-supply "" off\
+    trytond-stock-supply-day "" off\
+    trytond-stock-supply-forecast "" off\
+    trytond-stock-supply-production "" off\
+    trytond-timesheet "" off\
+    trytond-timesheet-cost "" off\
+    trytond-user-role "" off\
+    trytond-web-user "" on  3>&1 1>&2 2>&3`
+    dialog --clear
+    clear
+    echo "Ihre ausgewählten Module $ModulAuswahl"
+
+    echo "moreModul installation gestartet" >> InstallLogFile 2>&1
+    DIALOG=${DIALOG=dialog}
+
+    declare -a ListOfCommands=($ModulAuswahl)
+    COUNT=0
+    index=0;
+    len=${#ListOfCommands[@]}
+    (
+    for command in "${ListOfCommands[@]}"
+    do
+        index=$((index+1))
+        COUNT=$(( 100*(++i)/len ))     
+        echo $COUNT  
+        echo "XXX"
+        echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
+        echo "XXX"
+        pip3 install $command >> InstallLogFile 2>&1
+       # sleep 1
+        
+    done
+    ) | $DIALOG --title "Modul Installation" --gauge "Hier könnte dein Befehl stehen" 20 70 0;
+}
+
 #dialog liste für tryton module 
 function installModules(){
-    # Demonstriert dialog --checklist
-    # Name : dialog7
     ModulAuswahl=`dialog --checklist "Die von uns empfohlenen Module" 0 0 10\
     trytond "" on\
     trytond-account "" on\
@@ -188,8 +372,7 @@ function installModules(){
         1) clear; echo "Zusatz Module";;
         255) clear; echo "Installations abgebrochen";;
     esac
-
-    
+   
 }
 
 #tode Funktion 
