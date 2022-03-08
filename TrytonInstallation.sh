@@ -114,13 +114,43 @@ function checkForDialog(){
 #dummy
 function installPostgres(){
     yesNoDialog "Postgres Installation!" "Möchten sie Postgres installieren?" 10 80 ;
+
+    DIALOG=${DIALOG=dialog}
+
+    declare -a ListOfCommands=(
+                    "sudo apt install -y wget"
+                    "wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -"
+                    "echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list"
+                    "sudo apt -y install postgresql-11"
+                    )
+    COUNT=0
+    index=0;
+    len=${#ListOfCommands[@]}
+    (
+    for command in "${ListOfCommands[@]}"
+    do
+        index=$((index+1))
+        COUNT=$(( 100*(++i)/len ))     
+        echo $COUNT  
+        echo "XXX"
+        echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
+        echo "XXX"
+        #$command 
+        sleep 1
+        
+        done
+        ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
+ 
+    
+
 }
+ 
+
+
+    
 
 #installiert zusätzliche Pakete für die Python Umgebung
 function pythonPakete(){
-
-pip install trytond==$Zielversionsnummer proteus
-
     DIALOG=${DIALOG=dialog}
 
     declare -a ListOfCommands=(
