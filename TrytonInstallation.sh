@@ -17,10 +17,13 @@ BASEDIR=$PWD
 rm InstallLogFile
 touch $BASEDIR InstallLogFile
 x-terminal-emulator -e tail -f InstallLogFile
-echo "Hier sehen sie was im Hintergrund passiert:" > InstallLogFile
+echo "Hier sehen sie was im Hintergrund passiert:" >> $BASEDIR/InstallLogFile
+echo "Installation wird gestartet" >> $BASEDIR/InstallLogFile 2>&1
+
 
 #testet ob ein paket installiert ist
 function package_exists() {
+    echo "Checken ob Dialog installiert ist" >> InstallLogFile 2>&1
     return dpkg -l "$1" &> /dev/null
 }
 
@@ -33,7 +36,7 @@ function yesNoDialog(){
 
 #update funktion 
 function aptUpdate(){
-    echo "Update"
+    echo "aptUpdate gestartet" >> InstallLogFile 2>&1
       DIALOG=${DIALOG=dialog}
 
     declare -a ListOfCommands=(
@@ -52,11 +55,11 @@ function aptUpdate(){
         echo "XXX"
         echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
         echo "XXX"
-        $command > InstallLogFile 2>&1
+        $command >> InstallLogFile 2>&1
         sleep 1
         
         done
-        ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0;
+        ) | $DIALOG --title "Update und Upgrade" --gauge "Hier könnte dein Befehl stehen" 20 70 0;
 
         createVenv
 
@@ -84,6 +87,8 @@ function installtionStarten(){
 }
 #Willkommen funktions
 function Willkommen(){
+    echo " Willkommen gestartet: " >> InstallLogFile
+
     yesNoDialog "Willkommen" "Möchten sie Tryton auf ihrem Computer installieren?" 7 60 ;
 
     response=$?
@@ -111,54 +116,37 @@ function installPostgres(){
 
 #tode Funktion 
 function installPythonEnv(){
-      
+    echo "Install PythonEnv gestartet" >> InstallLogFile 2>&1
+
+   # sudo apt-get install python3 -y >> InstallLogFile 2>&1
+   # sudo apt-get install python3-venv -y >> InstallLogFile 2>&1
+   # python3 -m venv $1$2 >> InstallLogFile 2>&1
+
     DIALOG=${DIALOG=dialog}
 
-    COUNT=5
+    declare -a ListOfCommands=(
+                    "sudo apt-get install python3 -y"
+                    "sudo apt-get install python3-venv -y"
+                    "python3 -m venv $1$2 "
+                    )
+    COUNT=0
+    index=0;
+    len=${#ListOfCommands[@]}
     (
-
-    echo $COUNT
-    echo "XXX"
-    echo "Paket Quellen updaten (apt-get update) "
-    echo "XXX"
-    sudo apt-get update > /dev/null 2>&1
-    COUNT=`expr $COUNT + 20`
-    sleep 1
-
-    echo $COUNT
-    echo "XXX"
-    echo "Paket Quellen upgrade (apt-get upgrade) "
-    echo "XXX"
-    sudo apt-get upgrade > /dev/null 2>&1
-    COUNT=`expr $COUNT + 20`
-    sleep 1
-
-    echo $COUNT
-    echo "XXX"
-    echo "Python installieren (apt-get install python3 ) "
-    echo "XXX"
-    sudo apt-get install python3 -y > /dev/null 2>&1
-    COUNT=`expr $COUNT + 30`
-    sleep 1
-
-    echo $COUNT
-    echo "XXX"
-    echo "Python Virtual Enviroment installieren (apt-get install python3-venv ) "
-    echo "XXX"
-    sudo apt-get install python3-venv -y > /dev/null 2>&1
-    COUNT=`expr $COUNT + 30`
-    sleep 1
-
-    echo $COUNT
-    echo "XXX"
-    echo "Python Virtual Enviroment einrichten (python3 -m venv ${1}${2}) "
-    echo "XXX"
-    python3 -m venv $1$2 
-    COUNT=`expr $COUNT + 20`
-    sleep 1
-
-    ) |
-    $DIALOG --title "Python Virtual Env installieren " --gauge "" 20 70 0
+    for command in "${ListOfCommands[@]}"
+    do
+        index=$((index+1))
+        COUNT=$(( 100*(++i)/len ))     
+        echo $COUNT  
+        echo "XXX"
+        echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
+        echo "XXX"
+        $command >> InstallLogFile 2>&1
+        sleep 1
+        
+        done
+        ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0;
+ 
 
     installPostgres
 
@@ -196,7 +184,8 @@ function commandsExecuter() {
 #erstellt eine Virtuelle Python Umgebung
 function createVenv(){
 
-    echo "Name Input"
+    echo "CreateVenv gestartet" >> InstallLogFile 2>&1
+
     namePyEnv=$(dialog --title "Python virtual Envirement" --backtitle "Tryton Installation" --inputbox "Geben sie den gewünschten Namen ihrer virtuellen Python Umgebung ein. (bsplw: trytonEnv)" 10 70  --output-fd 1)
 
     if [ -t "$namePyEnv"]
