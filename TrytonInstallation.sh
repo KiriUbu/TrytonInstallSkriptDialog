@@ -368,7 +368,7 @@ function installModules(){
     yesNoDialog "Achtung!" "Möchten sie noch weitere Module installieren? Im folgenden können sie aus der Liste aller offiziellen Module aussuchen" 10 80 ;
     response=$?
     case $response in 
-        0) clear; echo "Dann bekommst du mehr";;
+        0) moreModules;;
         1) clear; echo "Zusatz Module";;
         255) clear; echo "Installations abgebrochen";;
     esac
