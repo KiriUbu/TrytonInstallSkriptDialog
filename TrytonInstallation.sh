@@ -175,7 +175,7 @@ function installModules(){
         echo "XXX"
         echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
         echo "XXX"
-        $command >> InstallLogFile 2>&1
+        pip3 install $command >> InstallLogFile 2>&1
         sleep 1
         
     done
