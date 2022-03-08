@@ -120,14 +120,44 @@ function installPostgres(){
 function installModules(){
     # Demonstriert dialog --checklist
     # Name : dialog7
-    pizza=`dialog --checklist "Unsere em" 0 0 4 \
-    Käse "" on\
-    Salami "" off\
-    Schinken "" off\
+    ModulAuswahl=`dialog --checklist "Die von uns empfohlenen Module" 0 0 4 \
+    trytond "" on\
+    trytond-account "" on\
+    trytond-account-invoice "" on\
+    trytond-account-invoice-line-standalone "" on\
+    trytond-account-invoice-stock "" on\
+    trytond-account-payment "" on\
+    trytond-account-product "" on\
+    trytond-account-statement "" on\
+    trytond-account-stock-continental "" on\
+    trytond-bank "" on\
+    trytond-company "" on\
+    trytond-company-work-time "" on\
+    trytond-country "" on\
+    trytond-currency "" on\
+    trytond-party "" on\
+    trytond-product "" on\
+    trytond-product-price-list "" on\
+    trytond-project "" on\
+    trytond-project-invoice "" on\
+    trytond-project-revenue "" on\
+    trytond-purchase "" on\
+    trytond-purchase-request "" on\
+    trytond-sale "" on\
+    trytond-sale-amendment "" on\
+    trytond-sale-history "" on\
+    trytond-sale-price-list "" on\
+    trytond-sale-supply "" on\
+    trytond-stock "" on\
+    trytond-stock-consignment "" on\
+    trytond-stock-supply "" on\
+    trytond-timesheet "" on\
+    trytond-timesheet-cost "" on\
+    trytond-web-user "" on\
     Thunfisch "" off 3>&1 1>&2 2>&3`
     dialog --clear
     clear
-    echo "Ihre Bestellung: Pizza mit $pizza"
+    echo "Ihre Bestellung: Pizza mit $ModulAuswahl"
 }
 
 #tode Funktion 
@@ -166,6 +196,7 @@ function installPythonEnv(){
 
    # installPostgres
    echo "source $1/$2/bin/activate" >> InstallLogFile
+   source $1/$2/bin/activate
    installModules
 }
 
