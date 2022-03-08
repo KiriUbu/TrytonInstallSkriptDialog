@@ -156,7 +156,6 @@ pip install trytond==$Zielversionsnummer proteus
         done
         ) | $DIALOG --title "Zusätzliche Python Pakete werden installiert " --gauge "Hier könnte dein Befehl stehen" 20 70 0
 
-
         installPostgres
 }
 
