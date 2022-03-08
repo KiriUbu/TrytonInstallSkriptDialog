@@ -116,6 +116,46 @@ function installPostgres(){
     yesNoDialog "Postgres Installation!" "Möchten sie Postgres installieren?" 10 80 ;
 }
 
+function pythonPakete(){
+
+pip install trytond==$Zielversionsnummer proteus
+
+    DIALOG=${DIALOG=dialog}
+
+    declare -a ListOfCommands=(
+                    "Genshi"
+                     "lxml" 
+                     "passlib" 
+                     "pycountry" 
+                     "forex_python" 
+                     "pkg-resources"
+                     "polib" 
+                     "psycopg2-binary" 
+                     "python-magic"
+                     "python-sql" 
+                     "relatorio"
+                     "Werkzeug" 
+                     "wrapt"
+                    )
+    COUNT=0
+    index=0;
+    len=${#ListOfCommands[@]}
+    (
+    for command in "${ListOfCommands[@]}"
+    do
+        index=$((index+1))
+        COUNT=$(( 100*(++i)/len ))     
+        echo $COUNT  
+        echo "XXX"
+        echo "Der folgende Befehl wird gerade durchgeführt: pip3 install $command $index/$len"
+        echo "XXX"
+        pip3 install $command 
+        sleep 1
+        
+        done
+        ) | $DIALOG --title "Zusätzliche Python Pakete werden installiert " --gauge "Hier könnte dein Befehl stehen" 20 70 0
+}
+
 #dialog liste für mehr tryton_module 
 function moreModules(){
     ModulAuswahl=`dialog --checklist "Wählen sie die Module die sie zusätzlich installieren wollen" 0 0 10\
@@ -300,6 +340,9 @@ function moreModules(){
         
     done
     ) | $DIALOG --title "Modul Installation" --gauge "Hier könnte dein Befehl stehen" 20 70 0;
+
+
+    pythonPakete
 }
 
 #dialog liste für tryton module 
@@ -369,7 +412,7 @@ function installModules(){
     response=$?
     case $response in 
         0) moreModules;;
-        1) clear; echo "Zusatz Module";;
+        1) pythonPakete;;
         255) clear; echo "Installations abgebrochen";;
     esac
    
