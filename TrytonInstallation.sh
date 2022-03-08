@@ -149,7 +149,7 @@ pip install trytond==$Zielversionsnummer proteus
         echo "XXX"
         echo "Der folgende Befehl wird gerade durchgeführt: pip3 install $command $index/$len"
         echo "XXX"
-        pip3 install $command 
+        pip3 install $command  >> InstallLogFile 2>&1
         sleep 1
         
         done
