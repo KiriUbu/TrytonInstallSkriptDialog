@@ -111,7 +111,7 @@ function checkForDialog(){
     fi
 }
 
-#dummy
+#funktion installiert Postgress
 function installPostgres(){
     yesNoDialog "Postgres Installation!" "Möchten sie Postgres installieren?" 10 80 ;
 
@@ -135,9 +135,7 @@ function installPostgres(){
         echo "XXX"
         echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
         echo "XXX"
-        #$command 
-        sleep 1
-        
+        echo "$command" >> InstallLogFile 2>&1 
         done
         ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
  
