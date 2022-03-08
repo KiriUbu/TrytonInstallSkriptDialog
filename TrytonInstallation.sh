@@ -274,7 +274,7 @@ function moreModules(){
     trytond-timesheet "" off\
     trytond-timesheet-cost "" off\
     trytond-user-role "" off\
-    trytond-web-user "" on  3>&1 1>&2 2>&3`
+    trytond-web-user "" off  3>&1 1>&2 2>&3`
     dialog --clear
     clear
     echo "Ihre ausgewählten Module $ModulAuswahl"
