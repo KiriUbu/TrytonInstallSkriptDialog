@@ -158,11 +158,35 @@ function installModules(){
     clear
     echo "Ihre ausgewählten Module $ModulAuswahl"
 
-    for modul in $ModulAuswahl
-    do 
-        pip3 install $modul >> InstallLogFile 2>&1
+
+    echo "Modul installation gestartet" >> InstallLogFile 2>&1
+    DIALOG=${DIALOG=dialog}
+
+    declare -a ListOfCommands=($ModulAuswahl)
+    COUNT=0
+    index=0;
+    len=${#ListOfCommands[@]}
+    (
+    for command in "${ListOfCommands[@]}"
+    do
+        index=$((index+1))
+        COUNT=$(( 100*(++i)/len ))     
+        echo $COUNT  
+        echo "XXX"
+        echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
+        echo "XXX"
+        $command >> InstallLogFile 2>&1
+        sleep 1
+        
     done
-    pip3 install werkzeug
+    ) | $DIALOG --title "Modul Installation" --gauge "Hier könnte dein Befehl stehen" 20 70 0;
+
+
+  #  for modul in $ModulAuswahl
+  #  do 
+  #      pip3 install $modul >> InstallLogFile 2>&1
+  #  done
+  #  pip3 install werkzeug
 }
 
 #tode Funktion 
