@@ -111,9 +111,7 @@ function checkForDialog(){
     fi
 }
 
-#funktion installiert Postgress
 function installPostgres(){
-    yesNoDialog "Postgres Installation!" "Möchten sie Postgres installieren?" 10 80 ;
 
     DIALOG=${DIALOG=dialog}
 
@@ -139,8 +137,18 @@ function installPostgres(){
         $command >> InstallLogFile 2>&1 
         done
         ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
- 
-    
+
+}
+
+#fPostgres installieren Ja nein?
+function installPostgresYesNo(){
+    yesNoDialog "Postgres Installation!" "Möchten sie Postgres installieren?" 10 80 ;
+    response=$?
+    case $response in 
+        0) installPostgres;;
+        1) clear; echo "Installations abgebrochen";;;;
+        255) clear; echo "Installations abgebrochen";;
+    esac
 
 }
  
@@ -184,7 +192,7 @@ function pythonPakete(){
         done
         ) | $DIALOG --title "Zusätzliche Python Pakete werden installiert " --gauge "Hier könnte dein Befehl stehen" 20 70 0
 
-        installPostgres
+        installPostgresYesNo
 }
 
 #dialog liste für mehr tryton_module 
