@@ -146,7 +146,7 @@ function installPostgresYesNo(){
     response=$?
     case $response in 
         0) installPostgres;;
-        1) clear; echo "Installations abgebrochen";;;;
+        1) clear; echo "Installations abgebrochen";;
         255) clear; echo "Installations abgebrochen";;
     esac
 
