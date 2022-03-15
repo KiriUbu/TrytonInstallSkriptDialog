@@ -138,6 +138,10 @@ function installPostgres(){
         done
         ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
 
+     echo "Path finding"
+    path=$(dialog --stdout --backtitle "Tryton Installation" --title "Wählen sie den Ort wo postgresql.conf liegt (/etc/postgresql/XX/main/) " --dselect / 10 60)
+    response=$?
+
 }
 
 #fPostgres installieren Ja nein?
