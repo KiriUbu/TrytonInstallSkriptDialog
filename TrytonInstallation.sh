@@ -141,6 +141,7 @@ function installPostgres(){
         ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
 
     sudo sed -i '59 i listen_addresses=\'\'*\'' ' /etc/postgresql/12/main/postgresql.conf
+    sudo systemctl restart postgresql
 }
 
 #fPostgres installieren Ja nein?
