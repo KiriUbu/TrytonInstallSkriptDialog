@@ -115,12 +115,13 @@ function checkForDialog(){
 function installPostgres(){
 
     DIALOG=${DIALOG=dialog}
+    postgresListenaddres= "listen_addresses='*'"
 
     declare -a ListOfCommands=(
                         "sudo apt-get -y install postgresql" 
                         "sudo apt-get -y install postgresql-contrib"
                         "sudo systemctl start postgresql"
-                        "sudo sed -i '59 i listen_addresses='*' /etc/postgresql/12/main/postgresql.conf "
+                        "sudo sed -i '59 i $postgresListenaddres ' /etc/postgresql/12/main/postgresql.conf "
                     )
     COUNT=0
     index=0;
