@@ -123,7 +123,7 @@ function configPostgres(){
             255) clear; echo "Installations abgebrochen";;
         esac
     fi
-
+    clear
     echo "CREATE DATABASE $nameDatenbank WITH OWNER = postgres ENCODING='UTF8' LC_COLLATE = 'C' LC_CTYPE='C' TABLESPACE = pg_default CONNECTION LIMIT= -1 TEMPLATE template0;";
 
 
