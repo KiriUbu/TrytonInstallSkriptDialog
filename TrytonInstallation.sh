@@ -150,12 +150,14 @@ function configPostgres(){
         esac
     fi
     
-    sudo -u postgres psql
-    CREATE DATABASE $nameDatenbank WITH OWNER = postgres ENCODING='UTF8' LC_COLLATE = 'C' LC_CTYPE='C' TABLESPACE = pg_default CONNECTION LIMIT= -1 TEMPLATE template0;
-    CREATE ROLE $datenBankNutzer WITH LOGIN SUPERUSER CREATEDB CREATEROLE INHERIT NOREPLICATION CONNECTION LIMIT -1 PASSWORD '$datenBankPW';
-    CREATE ROLE;
+    
+    sudo -u postgres psql -c "CREATE DATABASE nameDatenbank WITH OWNER = postgres ENCODING='UTF8' LC_COLLATE = 'C' LC_CTYPE='C' TABLESPACE = pg_default CONNECTION LIMIT= -1 TEMPLATE template0;"
+    sudo -u postgres psql -c "CREATE ROLE datenBankNutzer WITH LOGIN SUPERUSER CREATEDB CREATEROLE INHERIT NOREPLICATION CONNECTION LIMIT -1 PASSWORD 'datenBankPW'; "
 
-}
+    sudo mkdir /etc/tryton 
+    
+
+}   
 
 #postgress installieren 
 function installPostgres(){
@@ -599,8 +601,8 @@ function createVenv(){
 
 
 
-checkForDialog
-Willkommen
+#checkForDialog
+#Willkommen
 
 configPostgres
 
