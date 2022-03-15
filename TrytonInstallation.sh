@@ -111,9 +111,9 @@ function configPostgres(){
     sudo systemctl restart postgresql
    
 
-    nameDatenbank=$(dialog --title "Python virtual Envirement" --backtitle "Tryton Installation" --inputbox "Geben sie den gewünschten Namen ihrer virtuellen Python Umgebung ein. (bsplw: trytonEnv)" 10 70  --output-fd 1)
+    nameDatenbank=$(dialog --title "Postgres DB Name" --backtitle "Tryton Installation" --inputbox "Geben sie den gewünschten Namen ihrer Tryton Datenbank ein. (bsplw: trytonDB)" 10 70  --output-fd 1)
 
-    if [ -t "$namePyEnv"]
+    if [ -t "$nameDatenbank"]
     then 
         yesNoDialog "Achtung!" "Der Wert darf nicht null sein!" 10 80 ;
         response=$?
