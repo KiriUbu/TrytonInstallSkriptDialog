@@ -158,6 +158,7 @@ function configPostgres(){
     sudo mv trytond.conf /etc/tryton/trytond.conf
     sudo echo "uri = postgresql://$datenBankNutzer:$datenBankPW@localhost:5432/" >> /etc/tryton/trytond.conf
     clear
+    echo "Tryton wird eingerichtet! "
     trytond-admin -c /etc/tryton/trytond.conf -d $nameDatenbank --all
     trytond -c /etc/tryton/trytond.conf 
 
@@ -211,6 +212,8 @@ function installPostgresYesNo(){
 }
 #installiert zusätzliche Pakete für die Python Umgebung
 function pythonPakete(){
+
+    sudo apt install libgirepository1.0-dev
     DIALOG=${DIALOG=dialog}
 
     declare -a ListOfCommands=(
