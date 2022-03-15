@@ -115,7 +115,6 @@ function checkForDialog(){
 function installPostgres(){
 
     DIALOG=${DIALOG=dialog}
-    
 
     declare -a ListOfCommands=(
                         "sudo apt-get -y install postgresql" 
