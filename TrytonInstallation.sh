@@ -123,9 +123,36 @@ function configPostgres(){
             255) clear; echo "Installations abgebrochen";;
         esac
     fi
-    clear
-    echo "CREATE DATABASE $nameDatenbank WITH OWNER = postgres ENCODING='UTF8' LC_COLLATE = 'C' LC_CTYPE='C' TABLESPACE = pg_default CONNECTION LIMIT= -1 TEMPLATE template0;";
 
+    datenBankNutzer=$(dialog --title "Postgres DB Name" --backtitle "Tryton Installation" --inputbox "Wählen sie einen Namen für den Datenbank benutzer (bsplw. trytonDBUser) " 10 70  --output-fd 1)
+
+    if [ -t "$datenBankNutzer"]
+    then 
+        yesNoDialog "Achtung!" "Der Wert darf nicht null sein!" 10 80 ;
+        response=$?
+        case $response in 
+            0) configPostgres;;
+            1) clear; echo "Installations abgebrochen";;
+            255) clear; echo "Installations abgebrochen";;
+        esac
+    fi
+
+    datenBankPW=$(dialog --title "Postgres DB Name" --backtitle "Tryton Installation" --inputbox "Wählen sie ein Passwort für $datenBankNutzer " 10 70  --output-fd 1)
+
+    if [ -t "$datenBankPW"]
+    then 
+        yesNoDialog "Achtung!" "Der Wert darf nicht null sein!" 10 80 ;
+        response=$?
+        case $response in 
+            0) configPostgres;;
+            1) clear; echo "Installations abgebrochen";;
+            255) clear; echo "Installations abgebrochen";;
+        esac
+    fi
+  
+    echo "CREATE DATABASE $nameDatenbank WITH OWNER = postgres ENCODING='UTF8' LC_COLLATE = 'C' LC_CTYPE='C' TABLESPACE = pg_default CONNECTION LIMIT= -1 TEMPLATE template0;";
+    echo "CREATE ROLE $datenBankNutzer WITH LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT NOREPLICATION CONNECTION LIMIT -1 PASSWORD '$datenBankPW';"
+    echo "CREATE ROLE;"
 
 }
 
