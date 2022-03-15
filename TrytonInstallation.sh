@@ -111,6 +111,7 @@ function checkForDialog(){
     fi
 }
 
+#postgress installieren 
 function installPostgres(){
 
     DIALOG=${DIALOG=dialog}
@@ -151,8 +152,6 @@ function installPostgresYesNo(){
 }
  
 
-
-    
 
 #installiert zusätzliche Pakete für die Python Umgebung
 function pythonPakete(){
