@@ -120,6 +120,7 @@ function installPostgres(){
                         "sudo apt-get -y install postgresql" 
                         "sudo apt-get -y install postgresql-contrib"
                         "sudo systemctl start postgresql"
+                        "sudo sed -i '59 i listen_addresses='*' /etc/postgresql/12/main/postgresql.conf "
                     )
     COUNT=0
     index=0;
