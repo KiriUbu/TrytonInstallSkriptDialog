@@ -22,20 +22,17 @@ x-terminal-emulator -e tail -f InstallLogFile
 echo "Hier sehen sie was im Hintergrund passiert:" >> $BASEDIR/InstallLogFile
 echo "Installation wird gestartet" >> $BASEDIR/InstallLogFile 2>&1
 
-
 #testet ob ein paket installiert ist
 function package_exists() {
     echo "Checken ob Dialog installiert ist" >> InstallLogFile 2>&1
     return dpkg -l "$1" &> /dev/null
 }
-
 # ja nein Dialog Template
 function yesNoDialog(){
    dialog --title "$1" \
     --backtitle "Tryton Installation" \
     --yesno "$2" $3 $4
 }
-
 #update funktion 
 function aptUpdate(){
     echo "aptUpdate gestartet" >> InstallLogFile 2>&1
@@ -64,9 +61,7 @@ function aptUpdate(){
         ) | $DIALOG --title "Update und Upgrade" --gauge "Hier könnte dein Befehl stehen" 20 70 0;
 
         createVenv
-
 }
-
 #frage Dialog für update
 function YesNoAptUpdate(){
     yesNoDialog "Achtung!" "Als nächstes wird ein apt-get update und upgrade ausgeführt. Wollen sie ihr System updaten?" 7 60;
@@ -77,7 +72,6 @@ function YesNoAptUpdate(){
         255) clear; echo "Installations abgebrochen";;
     esac
 }
-
 function installtionStarten(){
     yesNoDialog "Achtung!" "Dieses Skript ist eine eigen Kreation und kann daher Fehler enthalten. Jegliche Haftung wird daher ausgeschlossen und sie handeln auf eigene Gefahr. Sind sie damit einverstanden? " 10 80
     response=$?
@@ -109,6 +103,30 @@ function checkForDialog(){
         echo "Dialog is not installed!";
         sudo apt-get install dialog
     fi
+}
+#config postgress
+function configPostgres(){
+
+    sudo sed -i '59 i listen_addresses=\'\'*\'' ' /etc/postgresql/12/main/postgresql.conf
+    sudo systemctl restart postgresql
+   
+
+    nameDatenbank=$(dialog --title "Python virtual Envirement" --backtitle "Tryton Installation" --inputbox "Geben sie den gewünschten Namen ihrer virtuellen Python Umgebung ein. (bsplw: trytonEnv)" 10 70  --output-fd 1)
+
+    if [ -t "$namePyEnv"]
+    then 
+        yesNoDialog "Achtung!" "Der Wert darf nicht null sein!" 10 80 ;
+        response=$?
+        case $response in 
+            0) configPostgres;;
+            1) clear; echo "Installations abgebrochen";;
+            255) clear; echo "Installations abgebrochen";;
+        esac
+    fi
+
+    echo "CREATE DATABASE $nameDatenbank WITH OWNER = postgres ENCODING='UTF8' LC_COLLATE = 'C' LC_CTYPE='C' TABLESPACE = pg_default CONNECTION LIMIT= -1 TEMPLATE template0;";
+
+
 }
 
 #postgress installieren 
@@ -142,9 +160,7 @@ function installPostgres(){
         done
         ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
 
-    sudo sed -i '59 i listen_addresses=\'\'*\'' ' /etc/postgresql/12/main/postgresql.conf
-    sudo systemctl restart postgresql
-    sudo -u postgres psql
+    
 }
 
 #fPostgres installieren Ja nein?
@@ -158,9 +174,6 @@ function installPostgresYesNo(){
     esac
 
 }
- 
-
-
 #installiert zusätzliche Pakete für die Python Umgebung
 function pythonPakete(){
     DIALOG=${DIALOG=dialog}
@@ -199,7 +212,6 @@ function pythonPakete(){
 
         installPostgresYesNo
 }
-
 #dialog liste für mehr tryton_module 
 function moreModules(){
     ModulAuswahl=`dialog --checklist "Wählen sie die Module die sie zusätzlich installieren wollen" 0 0 10\
@@ -388,7 +400,6 @@ function moreModules(){
 
     pythonPakete
 }
-
 #dialog liste für tryton module 
 function installModules(){
     ModulAuswahl=`dialog --checklist "Die von uns empfohlenen Module" 0 0 10\
@@ -461,7 +472,6 @@ function installModules(){
     esac
    
 }
-
 #tode Funktion 
 function installPythonEnv(){
     echo "Install PythonEnv gestartet" >> InstallLogFile 2>&1
@@ -501,8 +511,6 @@ function installPythonEnv(){
    source $1/$2/bin/activate
    installModules
 }
-
-
 #Template für Progressbar Funktionen 
 function commandsExecuter() {
     DIALOG=${DIALOG=dialog}
@@ -530,7 +538,6 @@ function commandsExecuter() {
         done
         ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
 }
-
 #erstellt eine Virtuelle Python Umgebung
 function createVenv(){
 
@@ -564,9 +571,9 @@ function createVenv(){
 
 
 
-checkForDialog
-Willkommen
+#checkForDialog
+#Willkommen
 
-
+configPostgres
 
 
