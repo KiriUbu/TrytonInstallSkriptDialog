@@ -116,10 +116,8 @@ function installPostgres(){
     DIALOG=${DIALOG=dialog}
 
     declare -a ListOfCommands=(
-                    "sudo apt-get install -y wget"
-                    "wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -"
-                    "echo 'deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main' | sudo tee  /etc/apt/sources.list.d/pgdg.list"
-                    "sudo apt-get -y install postgresql-11"
+                        "sudo apt-get -y install postgresql" 
+                        "sudo apt-get -y install postgresql-contrib"
                     )
     COUNT=0
     index=0;
