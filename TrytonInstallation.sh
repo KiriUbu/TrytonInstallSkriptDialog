@@ -192,6 +192,7 @@ function installPostgres(){
         done
         ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
 
+    configPostgres
     
 }
 
@@ -606,6 +607,6 @@ function createVenv(){
 checkForDialog
 Willkommen
 
-configPostgres
+#configPostgres
 
 
