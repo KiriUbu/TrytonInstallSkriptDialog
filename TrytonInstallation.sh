@@ -149,10 +149,11 @@ function configPostgres(){
             255) clear; echo "Installations abgebrochen";;
         esac
     fi
-  
-    echo "CREATE DATABASE $nameDatenbank WITH OWNER = postgres ENCODING='UTF8' LC_COLLATE = 'C' LC_CTYPE='C' TABLESPACE = pg_default CONNECTION LIMIT= -1 TEMPLATE template0;";
-    echo "CREATE ROLE $datenBankNutzer WITH LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT NOREPLICATION CONNECTION LIMIT -1 PASSWORD '$datenBankPW';"
-    echo "CREATE ROLE;"
+    
+    sudo -u postgres psql
+    CREATE DATABASE $nameDatenbank WITH OWNER = postgres ENCODING='UTF8' LC_COLLATE = 'C' LC_CTYPE='C' TABLESPACE = pg_default CONNECTION LIMIT= -1 TEMPLATE template0;
+    CREATE ROLE $datenBankNutzer WITH LOGIN SUPERUSER CREATEDB CREATEROLE INHERIT NOREPLICATION CONNECTION LIMIT -1 PASSWORD '$datenBankPW';
+    CREATE ROLE;
 
 }
 
@@ -598,8 +599,8 @@ function createVenv(){
 
 
 
-#checkForDialog
-#Willkommen
+checkForDialog
+Willkommen
 
 configPostgres
 
