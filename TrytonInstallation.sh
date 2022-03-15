@@ -120,8 +120,11 @@ function installPostgres(){
     declare -a ListOfCommands=(
                         "sudo apt-get -y install postgresql" 
                         "sudo apt-get -y install postgresql-contrib"
-                        "sudo systemctl start postgresql"
-                        
+                        "sudo systemctl start postgresql"    
+                        "sudo ufw allow 5432/tcp"
+                        "sudo apt-get install python-psycopg2" 
+                        "sudo apt-get install libpq-deb"
+                        "sudo apt-get install python3-psycopg2"
                     )
     COUNT=0
     index=0;
@@ -142,6 +145,7 @@ function installPostgres(){
 
     sudo sed -i '59 i listen_addresses=\'\'*\'' ' /etc/postgresql/12/main/postgresql.conf
     sudo systemctl restart postgresql
+    sudo -u postgres psql
 }
 
 #fPostgres installieren Ja nein?
