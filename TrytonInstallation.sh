@@ -119,6 +119,7 @@ function installPostgres(){
     declare -a ListOfCommands=(
                         "sudo apt-get -y install postgresql" 
                         "sudo apt-get -y install postgresql-contrib"
+                        "sudo systemctl start postgresql"
                     )
     COUNT=0
     index=0;
