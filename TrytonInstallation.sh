@@ -151,11 +151,13 @@ function configPostgres(){
     fi
     
     
-    sudo -u postgres psql -c "CREATE DATABASE nameDatenbank WITH OWNER = postgres ENCODING='UTF8' LC_COLLATE = 'C' LC_CTYPE='C' TABLESPACE = pg_default CONNECTION LIMIT= -1 TEMPLATE template0;"
-    sudo -u postgres psql -c "CREATE ROLE datenBankNutzer WITH LOGIN SUPERUSER CREATEDB CREATEROLE INHERIT NOREPLICATION CONNECTION LIMIT -1 PASSWORD 'datenBankPW'; "
+    sudo -u postgres psql -c "CREATE DATABASE $nameDatenbank WITH OWNER = postgres ENCODING='UTF8' LC_COLLATE = 'C' LC_CTYPE='C' TABLESPACE = pg_default CONNECTION LIMIT= -1 TEMPLATE template0;"
+    sudo -u postgres psql -c "CREATE ROLE $datenBankNutzer WITH LOGIN SUPERUSER CREATEDB CREATEROLE INHERIT NOREPLICATION CONNECTION LIMIT -1 PASSWORD '$datenBankPW'; "
 
     sudo mkdir /etc/tryton 
-    
+    sudo mv trytond.conf /etc/tryton/trytond.conf
+    sudo echo "uri = postgresql://$datenBankNutzer:$datenBankPW'@localhost:5432/" >> /etc/tryton/trytond.conf
+    #trytond-admin -c /etc/tryton/trytond.conf -d $nameDatenbank --all
 
 }   
 
