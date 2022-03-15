@@ -159,6 +159,7 @@ function configPostgres(){
     sudo echo "uri = postgresql://$datenBankNutzer:$datenBankPW@localhost:5432/" >> /etc/tryton/trytond.conf
     clear
     trytond-admin -c /etc/tryton/trytond.conf -d $nameDatenbank --all
+    trytond -c /etc/tryton/trytond.conf 
 
 }   
 
@@ -213,6 +214,8 @@ function pythonPakete(){
     DIALOG=${DIALOG=dialog}
 
     declare -a ListOfCommands=(
+                    "tryton"
+                    "pycairo"
                     "Genshi"
                      "lxml" 
                      "passlib" 
