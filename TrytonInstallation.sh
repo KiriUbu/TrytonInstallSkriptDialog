@@ -157,7 +157,7 @@ function configPostgres(){
     sudo mkdir /etc/tryton 
     sudo mv trytond.conf /etc/tryton/trytond.conf
     sudo echo "uri = postgresql://$datenBankNutzer:$datenBankPW'@localhost:5432/" >> /etc/tryton/trytond.conf
-    #trytond-admin -c /etc/tryton/trytond.conf -d $nameDatenbank --all
+    trytond-admin -c /etc/tryton/trytond.conf -d $nameDatenbank --all
 
 }   
 
