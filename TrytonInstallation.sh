@@ -115,13 +115,13 @@ function checkForDialog(){
 function installPostgres(){
 
     DIALOG=${DIALOG=dialog}
-    postgresListenaddres= "listen_addresses='*'"
+    
 
     declare -a ListOfCommands=(
                         "sudo apt-get -y install postgresql" 
                         "sudo apt-get -y install postgresql-contrib"
                         "sudo systemctl start postgresql"
-                        "sudo sed -i '59 i $postgresListenaddres ' /etc/postgresql/12/main/postgresql.conf "
+                        "sudo sed -i '59 i listen_addresses=\'\'*\'' ' /etc/postgresql/12/main/postgresql.conf"
                     )
     COUNT=0
     index=0;
@@ -140,9 +140,6 @@ function installPostgres(){
         done
         ) | $DIALOG --title "Python Virtual Env installieren " --gauge "Hier könnte dein Befehl stehen" 20 70 0
 
-     echo "Path finding"
-    path=$(dialog --stdout --backtitle "Tryton Installation" --title "Wählen sie den Ort wo postgresql.conf liegt (/etc/postgresql/XX/main/) " --dselect / 10 60)
-    response=$?
 
 }
 
