@@ -111,7 +111,7 @@ function configPostgres(){
     sudo systemctl restart postgresql
    
 
-    nameDatenbank=$(dialog --title "Postgres DB Name" --backtitle "Tryton Installation" --inputbox "Geben sie den gewünschten Namen ihrer Tryton Datenbank ein. (bsplw: trytonDB)" 10 70  --output-fd 1)
+    nameDatenbank=$(dialog --title "Postgres DB Name" --backtitle "Tryton Installation" --inputbox "Geben sie den gewünschten Namen ihrer Tryton Datenbank ein. (bsplw: trytondb)" 10 70  --output-fd 1)
 
     if [ -t "$nameDatenbank"]
     then 
@@ -124,7 +124,7 @@ function configPostgres(){
         esac
     fi
 
-    datenBankNutzer=$(dialog --title "Postgres DB Name" --backtitle "Tryton Installation" --inputbox "Wählen sie einen Namen für den Datenbank benutzer (bsplw. trytonDBUser) " 10 70  --output-fd 1)
+    datenBankNutzer=$(dialog --title "Postgres DB Name" --backtitle "Tryton Installation" --inputbox "Wählen sie einen Namen für den Datenbank benutzer (bsplw. trytondbuser) " 10 70  --output-fd 1)
 
     if [ -t "$datenBankNutzer"]
     then 
@@ -156,7 +156,8 @@ function configPostgres(){
 
     sudo mkdir /etc/tryton 
     sudo mv trytond.conf /etc/tryton/trytond.conf
-    sudo echo "uri = postgresql://$datenBankNutzer:$datenBankPW'@localhost:5432/" >> /etc/tryton/trytond.conf
+    sudo echo "uri = postgresql://$datenBankNutzer:$datenBankPW@localhost:5432/" >> /etc/tryton/trytond.conf
+    clear
     trytond-admin -c /etc/tryton/trytond.conf -d $nameDatenbank --all
 
 }   
