@@ -603,8 +603,8 @@ function createVenv(){
 
 
 
-#checkForDialog
-#Willkommen
+checkForDialog
+Willkommen
 
 configPostgres
 
