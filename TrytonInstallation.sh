@@ -238,14 +238,12 @@ function zusatzPakete(){
         
         done
         ) | $DIALOG --title "Zusätzliche Pakete werden installiert " --gauge "Hier könnte dein Befehl stehen" 20 70 0
+
+        pythonPakete
 }
 
 #installiert zusätzliche Pakete für die Python Umgebung
 function pythonPakete(){
-
-    zusatzPakete
-   
-
 
     DIALOG=${DIALOG=dialog}
 
@@ -471,7 +469,7 @@ function moreModules(){
     ) | $DIALOG --title "Modul Installation" --gauge "Hier könnte dein Befehl stehen" 20 70 0;
 
 
-    pythonPakete
+    zusatzPakete
 }
 #dialog liste für tryton module 
 function installModules(){
