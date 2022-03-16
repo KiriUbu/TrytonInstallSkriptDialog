@@ -213,8 +213,9 @@ function installPostgresYesNo(){
 }
 
 function zusatzPakete(){
-     DIALOG=${DIALOG=dialog}
 
+    echo "+++++ zusätzliche Pakete werden installiert! " >> InstallLogFile 2>&1
+    DIALOG=${DIALOG=dialog}
     declare -a ListOfCommands=(
                    "sudo apt install -y libgirepository1.0-dev"
                    "sudo apt-get install build-essential"
@@ -234,7 +235,7 @@ function zusatzPakete(){
         echo "XXX"
         echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
         echo "XXX"
-        p $command  >> InstallLogFile 2>&1
+        $command  >> InstallLogFile 2>&1
         
         done
         ) | $DIALOG --title "Zusätzliche Pakete werden installiert " --gauge "Hier könnte dein Befehl stehen" 20 70 0
