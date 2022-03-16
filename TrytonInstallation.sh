@@ -221,6 +221,8 @@ function pythonPakete(){
                    "sudo apt install -y libgirepository1.0-dev"
                    "sudo apt-get install build-essential"
                    "gcc"
+                   "python-dev"
+                   "pkg-config"
                     )
     COUNT=0
     index=0;
