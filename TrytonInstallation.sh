@@ -218,10 +218,11 @@ function zusatzPakete(){
     DIALOG=${DIALOG=dialog}
     declare -a ListOfCommands=(
                    "sudo apt install -y libgirepository1.0-dev"
-                   "sudo apt-get install build-essential"
-                   "gcc"
-                   "python-dev"
-                   "pkg-config"
+                   "sudo apt-get install -y build-essential"
+                   "sudo apt install -y libcairo2-dev"
+                   "sudo apt install -y gcc"
+                   "sudo apt install -y python-dev"
+                   "sudo apt install -y pkg-config"
                     )
     COUNT=0
     index=0;
