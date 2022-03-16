@@ -158,10 +158,11 @@ function configPostgres(){
     sudo mv trytond.conf /etc/tryton/trytond.conf
     sudo echo "uri = postgresql://$datenBankNutzer:$datenBankPW@localhost:5432/" >> /etc/tryton/trytond.conf
     clear
-    echo "Tryton wird eingerichtet! "
-    trytond-admin -c /etc/tryton/trytond.conf -d $nameDatenbank --all
+    echo "Tryton wird eingerichtet! " >> InstallLogFile 2>&1
+    trytond-admin -c /etc/tryton/trytond.conf -d $nameDatenbank --all  >> InstallLogFile 2>&1
     trytond -c /etc/tryton/trytond.conf 
 
+    echo "Installation beendet" >> InstallLogFile 2>&1
 }   
 
 #postgress installieren 
@@ -213,7 +214,32 @@ function installPostgresYesNo(){
 #installiert zusätzliche Pakete für die Python Umgebung
 function pythonPakete(){
 
-    sudo apt install libgirepository1.0-dev
+    
+    DIALOG=${DIALOG=dialog}
+
+    declare -a ListOfCommands=(
+                   "sudo apt install -y libgirepository1.0-dev"
+                   "sudo apt-get install build-essential"
+                   "gcc"
+                    )
+    COUNT=0
+    index=0;
+    len=${#ListOfCommands[@]}
+    (
+    for command in "${ListOfCommands[@]}"
+    do
+        index=$((index+1))
+        COUNT=$(( 100*(++i)/len ))     
+        echo $COUNT  
+        echo "XXX"
+        echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
+        echo "XXX"
+        p $command  >> InstallLogFile 2>&1
+        
+        done
+        ) | $DIALOG --title "Zusätzliche Pakete werden installiert " --gauge "Hier könnte dein Befehl stehen" 20 70 0
+
+
     DIALOG=${DIALOG=dialog}
 
     declare -a ListOfCommands=(
