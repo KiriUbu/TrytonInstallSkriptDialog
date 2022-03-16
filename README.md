@@ -1,7 +1,6 @@
 # TrytonInstallSkriptDialog
 
-This ist Dialog Script that install Tryton
+Dies ist ein Installtions Skript um Tryton auf Deutsch zu installieren. 
+Getestet wurde es an Ubuntu 20.04 Lts 
 
-Feel free to critic
-
-currently not fully working so work in progress
+Für Kritik und verbesserungen bin ich offen. 
