@@ -217,6 +217,7 @@ function zusatzPakete(){
     echo "+++++ zusätzliche Pakete werden installiert! " >> InstallLogFile 2>&1
     DIALOG=${DIALOG=dialog}
     declare -a ListOfCommands=(
+                   "sudo apt install python3-dev -y"
                    "sudo apt install libgirepository1.0-dev -y"
                    "sudo apt install build-essential -y"
                    "sudo apt install libcairo2-dev -y"
