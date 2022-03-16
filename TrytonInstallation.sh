@@ -158,8 +158,9 @@ function configPostgres(){
     sudo mv trytond.conf /etc/tryton/trytond.conf
     sudo echo "uri = postgresql://$datenBankNutzer:$datenBankPW@localhost:5432/" >> /etc/tryton/trytond.conf
     clear
-    echo "Tryton wird eingerichtet! " >> InstallLogFile 2>&1
-    trytond-admin -c /etc/tryton/trytond.conf -d $nameDatenbank --all  >> InstallLogFile 2>&1
+    echo "Tryton wird eingerichtet!"
+    echo "Tryton wird eingerichtet!" >> InstallLogFile 2>&1
+    trytond-admin -c /etc/tryton/trytond.conf -d $nameDatenbank --all 
     trytond -c /etc/tryton/trytond.conf 
 
     echo "Installation beendet" >> InstallLogFile 2>&1
