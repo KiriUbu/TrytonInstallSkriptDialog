@@ -217,12 +217,12 @@ function zusatzPakete(){
     echo "+++++ zusätzliche Pakete werden installiert! " >> InstallLogFile 2>&1
     DIALOG=${DIALOG=dialog}
     declare -a ListOfCommands=(
-                   "libgirepository1.0-dev"
-                   "build-essential"
-                   "libcairo2-dev"
-                   "gcc"
-                   "python-dev"
-                   "pkg-config"
+                   "sudo apt install libgirepository1.0-dev -y"
+                   "sudo apt install build-essential -y"
+                   "sudo apt install libcairo2-dev -y"
+                   "sudo apt install gcc -y"
+                   "sudo apt install python-dev -y"
+                   "sudo apt install pkg-config -y"
                     )
     COUNT=0
     index=0;
@@ -236,7 +236,7 @@ function zusatzPakete(){
         echo "XXX"
         echo "Der folgende Befehl wird gerade durchgeführt: $command $index/$len"
         echo "XXX"
-        sudo apt install -y $command  >> InstallLogFile 2>&1
+        $command  >> InstallLogFile 2>&1
         
         done
         ) | $DIALOG --title "Zusätzliche Pakete werden installiert " --gauge "Hier könnte dein Befehl stehen" 20 70 0
