@@ -539,7 +539,7 @@ function installModules(){
     response=$?
     case $response in 
         0) moreModules;;
-        1) pythonPakete;;
+        1)     zusatzPakete;;
         255) clear; echo "Installations abgebrochen";;
     esac
    
