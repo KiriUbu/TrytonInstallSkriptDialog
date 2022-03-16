@@ -214,7 +214,6 @@ function installPostgresYesNo(){
 }
 
 function zusatzPakete(){
-
     echo "+++++ zusätzliche Pakete werden installiert! " >> InstallLogFile 2>&1
     DIALOG=${DIALOG=dialog}
     declare -a ListOfCommands=(
@@ -645,10 +644,9 @@ function createVenv(){
 }
 
 
-
 checkForDialog
 Willkommen
 
-#configPostgres
+
 
 
