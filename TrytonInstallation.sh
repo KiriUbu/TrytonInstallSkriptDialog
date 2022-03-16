@@ -7,10 +7,6 @@
 
 
 ############################### TO DOs ###################################################################
-# - Jeglicher Output anstatt zu /dev/null zur Logdatei 
-# - Passende Echos in die Logdatei 
-# - postgres funktion schreiben 
-
 
 
 ############################### TO DOs ###################################################################
