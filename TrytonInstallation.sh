@@ -211,11 +211,9 @@ function installPostgresYesNo(){
     esac
 
 }
-#installiert zusätzliche Pakete für die Python Umgebung
-function pythonPakete(){
 
-    
-    DIALOG=${DIALOG=dialog}
+function zusatzPakete(){
+     DIALOG=${DIALOG=dialog}
 
     declare -a ListOfCommands=(
                    "sudo apt install -y libgirepository1.0-dev"
@@ -240,6 +238,13 @@ function pythonPakete(){
         
         done
         ) | $DIALOG --title "Zusätzliche Pakete werden installiert " --gauge "Hier könnte dein Befehl stehen" 20 70 0
+}
+
+#installiert zusätzliche Pakete für die Python Umgebung
+function pythonPakete(){
+
+    zusatzPakete
+   
 
 
     DIALOG=${DIALOG=dialog}
