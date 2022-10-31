@@ -14,7 +14,7 @@
 BASEDIR=$PWD
 rm InstallLogFile
 touch $BASEDIR InstallLogFile
-x-terminal-emulator -e tail -f InstallLogFile
+#x-terminal-emulator -e tail -f InstallLogFile
 echo "Hier sehen sie was im Hintergrund passiert:" >> $BASEDIR/InstallLogFile
 echo "Installation wird gestartet" >> $BASEDIR/InstallLogFile 2>&1
 
@@ -103,7 +103,7 @@ function checkForDialog(){
 #config postgress
 function configPostgres(){
 
-    sudo sed -i '59 i listen_addresses=\'\'*\'' ' /etc/postgresql/12/main/postgresql.conf
+    sudo sed -i '59 i listen_addresses=\'\'*\'' ' /etc/postgresql/14/main/postgresql.conf
     sudo systemctl restart postgresql
    
 
